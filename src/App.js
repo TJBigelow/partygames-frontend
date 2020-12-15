@@ -25,9 +25,7 @@ export default class App extends Component {
 
   updateAppStateGame = (newGame) => {
     this.setState({
-      game: {
-        game: newGame,
-      },
+      game: newGame
     });
   };
 

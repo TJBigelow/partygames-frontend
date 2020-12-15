@@ -10,6 +10,7 @@ export default class Game extends Component {
       },
       {
         received: (updatedGame) => {
+          // console.log(updatedGame)
           this.props.updateApp(updatedGame);
         },
       }
@@ -31,9 +32,15 @@ export default class Game extends Component {
   render() {
     return (
       <div>
-        {console.log(this.props.gameData.players)}
-        {this.props.gameData.code}
-        <table>{this.renderPlayers()}</table>
+        <h1>{this.props.gameData.code}</h1>
+        <table className="center">
+          <thead>
+            <tr>
+              <th>Players</th>
+            </tr>
+          </thead>
+          <tbody>{this.renderPlayers()}</tbody>
+        </table>
       </div>
     );
   }

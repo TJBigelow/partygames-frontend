@@ -21,7 +21,7 @@ export default function Landing(props) {
       }
     )
       .then((resp) => resp.json())
-      .then(resp => props.history.push(`/game/${resp.game_id}`))
+      .then(resp => props.history.push(`/player/${resp.id}`))
   };
 
   return (

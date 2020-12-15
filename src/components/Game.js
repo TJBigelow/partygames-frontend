@@ -10,7 +10,6 @@ export default class Game extends Component {
       },
       {
         received: (updatedGame) => {
-          // console.log(updatedGame)
           this.props.updateApp(updatedGame);
         },
       }

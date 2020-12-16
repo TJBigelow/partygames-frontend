@@ -9,12 +9,18 @@ export default class Game extends Component {
         game: window.location.href.match(/\d+$/)[0],
       },
       {
-        received: (updatedGame) => {
-          this.props.updateApp(updatedGame);
+        received: (data) => {
+          this.props.updateApp(data);
         },
       }
     );
   }
+
+  startGame = () => {
+    fetch(`http://localhost:3000/games/${this.props.gameData.id}`, {
+      method: "POST",
+    })
+  };
 
   renderPlayers = () => {
     return this.props.gameData.players.map((player) => {
@@ -40,6 +46,7 @@ export default class Game extends Component {
           </thead>
           <tbody>{this.renderPlayers()}</tbody>
         </table>
+        {this.props.gameData.started ? `Game begins in ${this.props.gameData.timer}` : <button onClick={this.startGame}>Start Game</button>}
       </div>
     );
   }

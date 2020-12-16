@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export default function Landing(props) {
   const [userName, setUserName] = useState("");
   const [gameCode, setGameCode] = useState("");
+  const [error, setError] = useState("")
 
   const createGame = () => {
     fetch("http://localhost:3000/games", {
@@ -21,7 +22,7 @@ export default function Landing(props) {
       }
     )
       .then((resp) => resp.json())
-      .then(resp => props.history.push(`/player/${resp.id}`))
+      .then(resp => resp.error ? setError('Game does not exist') : props.history.push(`/player/${resp.id}`))
   };
 
   return (
@@ -46,6 +47,7 @@ export default function Landing(props) {
           placeholder="Your Name"
         ></input>
         <button>Join Game</button>
+        {error ? <h3 style={{color: 'red'}}>{error}</h3> : null}
       </form>
     </div>
   );

@@ -16,6 +16,10 @@ export default class Game extends Component {
     );
   }
 
+  componentWillUnmount() {
+    this.props.cableApp.room.unsubscribe()
+  }
+
   startGame = () => {
     fetch(`http://localhost:3000/games/${this.props.gameData.id}`, {
       method: "POST",
@@ -34,6 +38,21 @@ export default class Game extends Component {
     });
   };
 
+  renderTimer = () => {
+    switch(this.props.gameData.active_phase) {
+      case 'starting':
+        return `Starting in ${this.props.gameData.timer} seconds`
+      case 'round 1':
+        return `${this.props.gameData.timer} seconds remaining in Round 1`
+      case 'round 2':
+        return `${this.props.gameData.timer} seconds remaining in Round 2`
+      case 'round 3':
+        return `${this.props.gameData.timer} seconds remaining in Round 3`
+      default:
+        return ''
+    }
+  }
+
   render() {
     return (
       <div>
@@ -46,7 +65,7 @@ export default class Game extends Component {
           </thead>
           <tbody>{this.renderPlayers()}</tbody>
         </table>
-        {this.props.gameData.started ? `Game begins in ${this.props.gameData.timer}` : <button onClick={this.startGame}>Start Game</button>}
+        {this.props.gameData.started ? this.renderTimer() : <button onClick={this.startGame}>Start Game</button>}
       </div>
     );
   }

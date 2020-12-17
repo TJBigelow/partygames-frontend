@@ -5,6 +5,7 @@ export default class Player extends Component {
     super();
     this.state = {
       message: "Waiting for game to begin",
+      prompt: ''
     };
   }
 
@@ -18,17 +19,22 @@ export default class Player extends Component {
       {
         received: (data) => {
           // this.props.updateApp(updatedPlayer);
-          this.setState({ message: data.message });
+          console.log(data)
+          this.setState(data);
         },
       }
     );
+  }
+
+  componentWillUnmount() {
+    this.props.cableApp.room = null
   }
 
   render() {
     return (
       <div>
         <h1>{this.props.currentUser.username}</h1>
-        <p>{this.state.message}</p>
+        <p>{this.state.prompt ? <div><p>{this.state.prompt}</p><input></input></div> : this.state.message}</p>
       </div>
     );
   }

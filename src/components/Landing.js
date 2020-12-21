@@ -19,9 +19,16 @@ export default function Landing(props) {
       setError("Username is too short");
     } else {
       fetch(
-        `https://tjb-partygame-api.herokuapp.com/players?username=${userName}&game=${gameCode}`,
+        `https://tjb-partygame-api.herokuapp.com/players`,
         {
           method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            username: userName,
+            game: gameCode
+          })
         }
       )
         .then((resp) => resp.json())

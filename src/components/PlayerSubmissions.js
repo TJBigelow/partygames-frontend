@@ -20,8 +20,8 @@ export default class PlayerSubmissions extends Component {
       this.props.player_number === "player1"
         ? { player1_response: this.state.submission }
         : { player2_response: this.state.submission };
-    console.log("Fetch:", `http://tjb-partygame.herokuapp.com/matchups/${this.props.matchup}`, this.props.player_number)
-    fetch(`http://tjb-partygame.herokuapp.com/matchups/${this.props.matchup}`, {
+    console.log("Fetch:", `http://tjb-partygame-api.herokuapp.com/matchups/${this.props.matchup}`, this.props.player_number)
+    fetch(`http://tjb-partygame-api.herokuapp.com/matchups/${this.props.matchup}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(response),

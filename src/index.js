@@ -8,7 +8,7 @@ import actionCable from 'actioncable'
 
 const CableApp = {}
 
-CableApp.cable = actionCable.createConsumer('wss://tjb-partygame-api.herokuapp.com/cable')
+CableApp.cable = actionCable.createConsumer('ws://localhost:3001/cable')
 
 ReactDOM.render(
   <React.StrictMode>

@@ -6,7 +6,7 @@ export default function Landing(props) {
   const [error, setError] = useState("");
 
   const createGame = () => {
-    fetch("https://tjb-partygame-api.herokuapp.com/games", {
+    fetch("http://localhost:3001/games", {
       method: "POST",
     })
       .then((resp) => resp.json())
@@ -19,7 +19,7 @@ export default function Landing(props) {
       setError("Username is too short");
     } else {
       fetch(
-        `https://tjb-partygame-api.herokuapp.com/players`,
+        `http://localhost:3001/players`,
         {
           method: "POST",
           headers: {

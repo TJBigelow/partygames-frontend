@@ -24,7 +24,7 @@ export default class Game extends Component {
   }
 
   startGame = () => {
-    fetch(`http://tjb-partygame.herokuapp.com//games/${this.props.gameData.id}`, {
+    fetch(`http://tjb-partygame.herokuapp.com/games/${this.props.gameData.id}`, {
       method: "POST",
     });
   };

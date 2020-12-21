@@ -15,7 +15,7 @@ export default class App extends Component {
   }
 
   getGameData = (id) => {
-    fetch(`http://tjb-partygame-api.herokuapp.com/games/${id}`)
+    fetch(`https://tjb-partygame-api.herokuapp.com/games/${id}`)
       .then((resp) => resp.json())
       .then((result) => {
         this.setState({
@@ -25,7 +25,7 @@ export default class App extends Component {
   };
 
   getPlayerData = (id) => {
-    fetch(`http://tjb-partygame-api.herokuapp.com/players/${id}`)
+    fetch(`https://tjb-partygame-api.herokuapp.com/players/${id}`)
       .then((resp) => resp.json())
       .then((result) => {
         this.setState({

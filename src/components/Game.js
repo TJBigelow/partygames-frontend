@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import GameSubmissions from "./GameSubmissions";
+import GameRecap from "./GameRecap";
 
 export default class Game extends Component {
   componentDidMount() {
@@ -10,6 +12,7 @@ export default class Game extends Component {
       },
       {
         received: (data) => {
+          console.log(data);
           this.props.updateApp(data);
         },
       }
@@ -17,13 +20,13 @@ export default class Game extends Component {
   }
 
   componentWillUnmount() {
-    this.props.cableApp.room.unsubscribe()
+    this.props.cableApp.room.unsubscribe();
   }
 
   startGame = () => {
     fetch(`http://localhost:3000/games/${this.props.gameData.id}`, {
       method: "POST",
-    })
+    });
   };
 
   renderPlayers = () => {
@@ -38,34 +41,57 @@ export default class Game extends Component {
     });
   };
 
-  renderTimer = () => {
-    switch(this.props.gameData.active_phase) {
-      case 'starting':
-        return `Starting in ${this.props.gameData.timer} seconds`
-      case 'round 1':
-        return `${this.props.gameData.timer} seconds remaining in Round 1`
-      case 'round 2':
-        return `${this.props.gameData.timer} seconds remaining in Round 2`
-      case 'round 3':
-        return `${this.props.gameData.timer} seconds remaining in Round 3`
+  renderGame = () => {
+    switch (this.props.gameData.active_phase) {
+      case "starting":
+        return (
+          <table className="center">
+            <thead>
+              <tr>
+                <th>Players</th>
+              </tr>
+            </thead>
+            <tbody>{this.renderPlayers()}</tbody>
+            Starting in {this.props.gameData.timer} seconds;
+          </table>
+        );
+      case "submissions":
+        return <GameSubmissions gameData={this.props.gameData} />;
+      case "recap":
+        return <GameRecap gameData={this.props.gameData} />;
       default:
-        return ''
+        return (
+          <table className="center">
+            <thead>
+              <tr>
+                <th>Players</th>
+              </tr>
+            </thead>
+            <tbody>{this.renderPlayers()}</tbody>
+          </table>
+        );
     }
-  }
+  };
 
   render() {
     return (
       <div>
         <h1>{this.props.gameData.code}</h1>
-        <table className="center">
-          <thead>
-            <tr>
-              <th>Players</th>
-            </tr>
-          </thead>
-          <tbody>{this.renderPlayers()}</tbody>
-        </table>
-        {this.props.gameData.started ? this.renderTimer() : <button onClick={this.startGame}>Start Game</button>}
+        {this.props.gameData.started ? (
+          this.renderGame()
+        ) : (
+          <div>
+            <table className="center">
+              <thead>
+                <tr>
+                  <th>Players</th>
+                </tr>
+              </thead>
+              <tbody>{this.renderPlayers()}</tbody>
+            </table>
+            <button onClick={this.startGame}>Start Game</button>
+          </div>
+        )}
       </div>
     );
   }

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import PlayerSubmissions from "./PlayerSubmissions";
 
 export default class Player extends Component {
   constructor() {
     super();
     this.state = {
       message: "Waiting for game to begin",
-      prompt: ''
+      prompt: "",
     };
   }
 
@@ -19,7 +20,7 @@ export default class Player extends Component {
       {
         received: (data) => {
           // this.props.updateApp(updatedPlayer);
-          console.log(data)
+          console.log(data);
           this.setState(data);
         },
       }
@@ -27,14 +28,21 @@ export default class Player extends Component {
   }
 
   componentWillUnmount() {
-    this.props.cableApp.room = null
+    this.props.cableApp.room = null;
   }
 
   render() {
     return (
       <div>
         <h1>{this.props.currentUser.username}</h1>
-        <p>{this.state.prompt ? <div><p>{this.state.prompt}</p><input></input></div> : this.state.message}</p>
+
+        <div>
+          {this.state.active_phase === "submissions" ? (
+            <PlayerSubmissions prompt={this.state.prompt} matchup={this.state.matchup} player_number={this.state.player_number} />
+          ) : (
+            this.state.message
+          )}
+        </div>
       </div>
     );
   }

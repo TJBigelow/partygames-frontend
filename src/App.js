@@ -35,9 +35,9 @@ export default class App extends Component {
       });
   };
 
-  updateAppStateGame = (newGame) => {
+  updateAppStateGame = (data) => {
     this.setState({
-      game: newGame,
+      game: {...this.state.game, ...data}
     });
   };
 

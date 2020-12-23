@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PlayerSubmissions from "./PlayerSubmissions";
 import PlayerVoting from "./PlayerVoting";
+import PlayerRecap from "./PlayerRecap";
 
 export default class Player extends Component {
   constructor() {
@@ -43,13 +44,15 @@ export default class Player extends Component {
             player_number={this.state.player_number}
           />
         );
-      case "recap":
+      case "voting":
           return (
             <PlayerVoting
               matchup={this.state.matchup}
               voter_id={this.state.voter_id}
             />
           )
+      case "recap":
+        return <PlayerRecap />
       default:
         return this.state.message
     }

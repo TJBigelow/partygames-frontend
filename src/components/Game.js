@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import GameSubmissions from "./GameSubmissions";
 import GameRecap from "./GameRecap";
-import URL from '../url'
+import GameVoting from "./GameVoting";
+import URL from "../url";
 
 export default class Game extends Component {
   componentDidMount() {
@@ -58,6 +59,8 @@ export default class Game extends Component {
         );
       case "submissions":
         return <GameSubmissions gameData={this.props.gameData} />;
+      case "voting":
+        return <GameVoting gameData={this.props.gameData} />;
       case "recap":
         return <GameRecap gameData={this.props.gameData} />;
       default:

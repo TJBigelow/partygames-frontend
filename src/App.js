@@ -4,6 +4,7 @@ import Player from "./components/Player";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import React, { Component } from "react";
+import URL from './url'
 
 export default class App extends Component {
   constructor() {
@@ -15,7 +16,7 @@ export default class App extends Component {
   }
 
   getGameData = (id) => {
-    fetch(`http://localhost:3001/games/${id}`)
+    fetch(`${URL}/games/${id}`)
       .then((resp) => resp.json())
       .then((result) => {
         this.setState({
@@ -25,7 +26,7 @@ export default class App extends Component {
   };
 
   getPlayerData = (id) => {
-    fetch(`http://localhost:3001/players/${id}`)
+    fetch(`${URL}/players/${id}`)
       .then((resp) => resp.json())
       .then((result) => {
         this.setState({

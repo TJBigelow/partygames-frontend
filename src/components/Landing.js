@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import URL from '../url'
 
 export default function Landing(props) {
   const [userName, setUserName] = useState("");
@@ -6,7 +7,7 @@ export default function Landing(props) {
   const [error, setError] = useState("");
 
   const createGame = () => {
-    fetch("http://localhost:3001/games", {
+    fetch(`${URL}/games`, {
       method: "POST",
     })
       .then((resp) => resp.json())
@@ -19,7 +20,7 @@ export default function Landing(props) {
       setError("Username is too short");
     } else {
       fetch(
-        `http://localhost:3001/players`,
+        `${URL}/players`,
         {
           method: "POST",
           headers: {

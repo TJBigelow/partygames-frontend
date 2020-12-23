@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GameSubmissions from "./GameSubmissions";
 import GameRecap from "./GameRecap";
+import URL from '../url'
 
 export default class Game extends Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ export default class Game extends Component {
   }
 
   startGame = () => {
-    fetch(`http://localhost:3001/games/${this.props.gameData.id}`, {
+    fetch(`${URL}/games/${this.props.gameData.id}`, {
       method: "POST",
     });
   };

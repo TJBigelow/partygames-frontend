@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import URL from '../url'
 
 export default class PlayerSubmissions extends Component {
   constructor() {
@@ -20,8 +21,8 @@ export default class PlayerSubmissions extends Component {
       this.props.player_number === "player1"
         ? { player1_response: this.state.submission }
         : { player2_response: this.state.submission };
-    console.log("Fetch:", `http://localhost:3001/matchups/${this.props.matchup}`, this.props.player_number)
-    fetch(`http://localhost:3001/matchups/${this.props.matchup}`, {
+    console.log("Fetch:", `${URL}/matchups/${this.props.matchup}`, this.props.player_number)
+    fetch(`${URL}/matchups/${this.props.matchup}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(response),

@@ -31,7 +31,7 @@ export default class PlayerVoting extends Component {
   renderBallot = () => {
     return (
       <div>
-        <h3>Vote:</h3>
+        <h3>{this.props.matchup.prompt}</h3>
         <button
           data-id={this.props.matchup.player1_id}
           onClick={this.handleVote}

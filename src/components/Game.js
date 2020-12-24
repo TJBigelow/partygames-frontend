@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import GameSubmissions from "./GameSubmissions";
 import GameRecap from "./GameRecap";
 import GameVoting from "./GameVoting";
+import GameScoreRecap from "./GameScoreRecap";
 import URL from "../url";
 
 export default class Game extends Component {
@@ -63,6 +64,8 @@ export default class Game extends Component {
         return <GameVoting gameData={this.props.gameData} />;
       case "recap":
         return <GameRecap gameData={this.props.gameData} />;
+      case "score":
+        return <GameScoreRecap gameData={this.props.gameData} />
       default:
         return (
           <table className="center">

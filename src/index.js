@@ -8,6 +8,7 @@ import actionCable from 'actioncable'
 
 const CableApp = {}
 
+// CableApp.cable = actionCable.createConsumer('ws://localhost:3001/cable')
 CableApp.cable = actionCable.createConsumer('wss://desolate-sea-05709.herokuapp.com/cable')
 
 ReactDOM.render(

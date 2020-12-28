@@ -14,6 +14,15 @@ export default function Landing(props) {
       .then((resp) => props.history.push(`/game/${resp.id}`));
   };
 
+  const watchGame = (e) => {
+    e.preventDefault()
+    fetch(`${URL}/watch/${gameCode}`, {
+      method: "POST",
+    })
+      .then((resp) => resp.json())
+      .then((resp) => props.history.push(`/game/${resp.id}`));
+  };
+
   const joinGame = (e) => {
     e.preventDefault();
     if (userName.length < 1) {
@@ -74,6 +83,19 @@ export default function Landing(props) {
         <button>Join Game</button>
         {error ? <h3 style={{ color: "red" }}>{error}</h3> : null}
       </form>
+      <h3>or</h3>
+      <form onSubmit={watchGame}>
+        <input
+          onChange={(e) => setGameCode(e.target.value.toUpperCase())}
+          value={gameCode}
+          placeholder="Game Code"
+          maxLength="4"
+          size="6"
+        ></input>
+        <button>Watch Game</button>
+        {error ? <h3 style={{ color: "red" }}>{error}</h3> : null}
+      </form>
+
     </div>
   );
 }

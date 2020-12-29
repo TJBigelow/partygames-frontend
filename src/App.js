@@ -1,10 +1,11 @@
 import Game from "./components/Game";
 import Landing from "./components/Landing";
 import Player from "./components/Player";
+import Watch from "./components/Watch";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import React, { Component } from "react";
-import { Container } from 'react-bootstrap'
+import { Container } from "react-bootstrap";
 import URL from "./url";
 
 export default class App extends Component {
@@ -13,11 +14,12 @@ export default class App extends Component {
     this.state = {
       game: { code: 0, players: [] },
       currentUser: {},
+      screen: "landing",
     };
   }
 
-  getGameData = (id) => {
-    fetch(`${URL}/games/${id}`)
+  getGameData = () => {
+    fetch(`${URL}/games/${this.state.game.id}`)
       .then((resp) => resp.json())
       .then((result) => {
         this.setState({
@@ -26,8 +28,8 @@ export default class App extends Component {
       });
   };
 
-  getPlayerData = (id) => {
-    fetch(`${URL}/players/${id}`)
+  getPlayerData = () => {
+    fetch(`${URL}/players/${this.state.currentUser.id}`)
       .then((resp) => resp.json())
       .then((result) => {
         this.setState({
@@ -43,11 +45,58 @@ export default class App extends Component {
     });
   };
 
+  setScreen = ({
+    game = this.state.game,
+    player = this.state.player,
+    screen,
+  }) => {
+    console.log(game, screen);
+    this.setState({ game: game, currentUser: player, screen: screen });
+  };
+
+  renderScreen = () => {
+    switch (this.state.screen) {
+      case "landing":
+        return <Landing setScreen={this.setScreen} />;
+      case "game":
+        return (
+          <Game
+            cableApp={this.props.cableApp}
+            updateApp={this.updateAppStateGame}
+            getGameData={this.getGameData}
+            gameData={this.state.game}
+            currentUser={this.state.currentUser}
+          />
+        );
+      case "player":
+        return (
+          <Player
+            cableApp={this.props.cableApp}
+            updateApp={this.updateAppStateGame}
+            getPlayerData={this.getPlayerData}
+            gameData={this.state.game}
+            currentUser={this.state.currentUser}
+          />
+        );
+      case "watch":
+        return (
+          <Watch
+            cableApp={this.props.cableApp}
+            updateApp={this.updateAppStateGame}
+            getGameData={this.getGameData}
+            gameData={this.state.game}
+            currentUser={this.state.currentUser}
+          />
+        );
+    }
+  };
+
   render() {
     return (
       <Container>
         <div className="App d-flex justify-content-center align-self-center">
-          <Switch>
+          {this.renderScreen()}
+          {/* <Switch>
             <Route path="/game/:id">
               <Game
                 cableApp={this.props.cableApp}
@@ -67,7 +116,7 @@ export default class App extends Component {
               />
             </Route>
             <Route component={Landing} path="/" />
-          </Switch>
+          </Switch> */}
         </div>
       </Container>
     );

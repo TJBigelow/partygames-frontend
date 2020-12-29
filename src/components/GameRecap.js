@@ -24,7 +24,7 @@ export default class GameRecap extends Component {
               <td
                 style={{
                   width: "40%",
-                  color: `${this.p1winner() ? "blue" : "steelblue"}`,
+                  color: `${this.p1winner() ? "blue" : "royalblue"}`,
                 }}
               >
                 <h2

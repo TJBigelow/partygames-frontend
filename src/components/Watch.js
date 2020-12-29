@@ -6,7 +6,7 @@ import GameScoreRecap from "./GameScoreRecap";
 import URL from "../url";
 import { Table, Button, Jumbotron } from "react-bootstrap";
 
-export default class Game extends Component {
+export default class Watch extends Component {
   componentDidMount() {
     this.props.getGameData();
     this.props.cableApp.room = this.props.cableApp.cable.subscriptions.create(
@@ -97,7 +97,7 @@ export default class Game extends Component {
               </thead>
               <tbody>{this.renderPlayers()}</tbody>
             </Table>
-            <Button onClick={this.startGame}>Start Game</Button>
+            {/* <Button onClick={this.startGame}>Start Game</Button> */}
           </div>
         )}
       </div>

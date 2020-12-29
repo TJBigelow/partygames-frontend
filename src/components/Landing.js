@@ -12,7 +12,7 @@ export default function Landing(props) {
       method: "POST",
     })
       .then((resp) => resp.json())
-      .then((resp) => props.history.push(`/game/${resp.id}`));
+      .then((resp) => props.setScreen({game: resp, screen: 'game'}));
   };
 
   const watchGame = (e) => {
@@ -23,7 +23,7 @@ export default function Landing(props) {
       .then((resp) => resp.json())
       .then((resp) => {
         if (resp) {
-          props.history.push(`/game/${resp.id}`);
+          props.setScreen({game: resp, screen: 'watch'});
         } else {
           setError("Game does not exist");
         }
@@ -55,7 +55,7 @@ export default function Landing(props) {
               setError("Game has already started");
               break;
             default:
-              props.history.push(`/player/${resp.id}`);
+              props.setScreen({player: resp, screen: 'player'});
           }
         });
     }

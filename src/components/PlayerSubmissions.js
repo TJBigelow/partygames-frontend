@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import URL from '../url'
+import { InputGroup, Form } from "react-bootstrap";
+import URL from "../url";
 
 export default class PlayerSubmissions extends Component {
   constructor() {
@@ -21,7 +22,11 @@ export default class PlayerSubmissions extends Component {
       this.props.player_number === "player1"
         ? { player1_response: this.state.submission }
         : { player2_response: this.state.submission };
-    console.log("Fetch:", `${URL}/matchups/${this.props.matchup}`, this.props.player_number)
+    console.log(
+      "Fetch:",
+      `${URL}/matchups/${this.props.matchup}`,
+      this.props.player_number
+    );
     fetch(`${URL}/matchups/${this.props.matchup}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -32,17 +37,21 @@ export default class PlayerSubmissions extends Component {
   render() {
     return (
       <div>
-        {console.log('matchup:', this.props.matchup)}
+        {console.log("matchup:", this.props.matchup)}
         {this.state.submitted ? null : (
           <div>
             <h2>{this.props.prompt}</h2>
-            <form onSubmit={this.handleSubmit}>
-              <input
-                onChange={this.handleChange}
-                value={this.state.submission}
-              ></input>
-              <input type="submit"></input>
-            </form>
+            <Form onSubmit={this.handleSubmit}>
+              <InputGroup>
+                <Form.Control
+                  onChange={this.handleChange}
+                  value={this.state.submission}
+                ></Form.Control>
+                <InputGroup.Append>
+                  <input type="submit" className="btn btn-secondary"></input>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form>
           </div>
         )}
       </div>

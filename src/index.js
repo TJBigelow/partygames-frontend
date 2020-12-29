@@ -5,11 +5,12 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import actionCable from 'actioncable'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CableApp = {}
 
-// CableApp.cable = actionCable.createConsumer('ws://localhost:3001/cable')
-CableApp.cable = actionCable.createConsumer('wss://desolate-sea-05709.herokuapp.com/cable')
+CableApp.cable = actionCable.createConsumer('ws://localhost:3001/cable')
+// CableApp.cable = actionCable.createConsumer('wss://desolate-sea-05709.herokuapp.com/cable')
 
 ReactDOM.render(
   <React.StrictMode>

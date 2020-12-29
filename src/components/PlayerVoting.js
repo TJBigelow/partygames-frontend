@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Row } from "react-bootstrap";
 import URL from "../url";
 
 export default class PlayerVoting extends Component {
@@ -30,21 +31,26 @@ export default class PlayerVoting extends Component {
 
   renderBallot = () => {
     return (
-      <div>
+      <div className="justify-content-center">
         <h3>{this.props.matchup.prompt}</h3>
-        <button
-          data-id={this.props.matchup.player1_id}
-          onClick={this.handleVote}
-        >
-          {this.props.matchup.player1_response}
-        </button>
-        <br />
-        <button
-          data-id={this.props.matchup.player2_id}
-          onClick={this.handleVote}
-        >
-          {this.props.matchup.player2_response}
-        </button>
+        <Row className="justify-content-center">
+          <button
+            data-id={this.props.matchup.player1_id}
+            onClick={this.handleVote}
+            className="btn btn-primary btn-block my-3"
+          >
+            {this.props.matchup.player1_response}
+          </button>
+        </Row>
+        <Row className="justify-content-center">
+          <button
+            data-id={this.props.matchup.player2_id}
+            onClick={this.handleVote}
+            className="btn btn-danger btn-block my-3"
+          >
+            {this.props.matchup.player2_response}
+          </button>
+        </Row>
       </div>
     );
   };

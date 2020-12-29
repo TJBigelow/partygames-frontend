@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Table } from "react-bootstrap";
 
 export default class GameScoreRecap extends Component {
   renderScores = () => {
@@ -16,7 +17,7 @@ export default class GameScoreRecap extends Component {
 
   render() {
     return (
-      <table className="center">
+      <Table className="table-striped">
         <thead>
           <tr>
             <th>Players</th>
@@ -24,7 +25,7 @@ export default class GameScoreRecap extends Component {
           </tr>
         </thead>
         <tbody>{this.renderScores()}</tbody>
-      </table>
+      </Table>
     );
   }
 }

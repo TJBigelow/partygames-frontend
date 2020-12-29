@@ -5,8 +5,10 @@ export default class GameSubmissions extends Component {
     return (
       <div>
         <h1>Fill out the form on your device</h1>
-        <p>{this.props.gameData.timer} seconds remaining in Round{" "}
-        {this.props.gameData.round}</p>
+        <p>
+          {this.props.gameData.timer} seconds remaining in Round
+          {this.props.gameData.round}
+        </p>
       </div>
     );
   }

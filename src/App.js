@@ -4,7 +4,8 @@ import Player from "./components/Player";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import React, { Component } from "react";
-import URL from './url'
+import { Container } from 'react-bootstrap'
+import URL from "./url";
 
 export default class App extends Component {
   constructor() {
@@ -38,35 +39,37 @@ export default class App extends Component {
 
   updateAppStateGame = (data) => {
     this.setState({
-      game: {...this.state.game, ...data}
+      game: { ...this.state.game, ...data },
     });
   };
 
   render() {
     return (
-      <div className="App">
-        <Switch>
-          <Route path="/game/:id">
-            <Game
-              cableApp={this.props.cableApp}
-              updateApp={this.updateAppStateGame}
-              getGameData={this.getGameData}
-              gameData={this.state.game}
-              currentUser={this.state.currentUser}
-            />
-          </Route>
-          <Route path="/player/:id">
-            <Player
-              cableApp={this.props.cableApp}
-              updateApp={this.updateAppStateGame}
-              getPlayerData={this.getPlayerData}
-              gameData={this.state.game}
-              currentUser={this.state.currentUser}
-            />
-          </Route>
-          <Route component={Landing} path="/" />
-        </Switch>
-      </div>
+      <Container>
+        <div className="App d-flex justify-content-center align-self-center">
+          <Switch>
+            <Route path="/game/:id">
+              <Game
+                cableApp={this.props.cableApp}
+                updateApp={this.updateAppStateGame}
+                getGameData={this.getGameData}
+                gameData={this.state.game}
+                currentUser={this.state.currentUser}
+              />
+            </Route>
+            <Route path="/player/:id">
+              <Player
+                cableApp={this.props.cableApp}
+                updateApp={this.updateAppStateGame}
+                getPlayerData={this.getPlayerData}
+                gameData={this.state.game}
+                currentUser={this.state.currentUser}
+              />
+            </Route>
+            <Route component={Landing} path="/" />
+          </Switch>
+        </div>
+      </Container>
     );
   }
 }

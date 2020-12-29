@@ -4,6 +4,7 @@ import GameRecap from "./GameRecap";
 import GameVoting from "./GameVoting";
 import GameScoreRecap from "./GameScoreRecap";
 import URL from "../url";
+import { Table, Button, Jumbotron } from "react-bootstrap";
 
 export default class Game extends Component {
   componentDidMount() {
@@ -48,7 +49,7 @@ export default class Game extends Component {
     switch (this.props.gameData.active_phase) {
       case "starting":
         return (
-          <table className="center">
+          <Table className="table-striped">
             <thead>
               <tr>
                 <th>Players</th>
@@ -56,7 +57,7 @@ export default class Game extends Component {
             </thead>
             <tbody>{this.renderPlayers()}</tbody>
             Starting in {this.props.gameData.timer} seconds;
-          </table>
+          </Table>
         );
       case "submissions":
         return <GameSubmissions gameData={this.props.gameData} />;
@@ -68,35 +69,35 @@ export default class Game extends Component {
         return <GameScoreRecap gameData={this.props.gameData} />
       default:
         return (
-          <table className="center">
+          <Table className="table-striped">
             <thead>
               <tr>
                 <th>Players</th>
               </tr>
             </thead>
             <tbody>{this.renderPlayers()}</tbody>
-          </table>
+          </Table>
         );
     }
   };
 
   render() {
     return (
-      <div>
-        <h1>{this.props.gameData.code}</h1>
+      <div className="container">
+        <Jumbotron><h1>{this.props.gameData.code}</h1></Jumbotron>
         {this.props.gameData.started ? (
           this.renderGame()
         ) : (
           <div>
-            <table className="center">
+            <Table className="table-striped">
               <thead>
                 <tr>
                   <th>Players</th>
                 </tr>
               </thead>
               <tbody>{this.renderPlayers()}</tbody>
-            </table>
-            <button onClick={this.startGame}>Start Game</button>
+            </Table>
+            <Button onClick={this.startGame}>Start Game</Button>
           </div>
         )}
       </div>

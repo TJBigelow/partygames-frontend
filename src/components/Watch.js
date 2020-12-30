@@ -66,7 +66,7 @@ export default class Watch extends Component {
       case "recap":
         return <GameRecap gameData={this.props.gameData} />;
       case "score":
-        return <GameScoreRecap gameData={this.props.gameData} />
+        return <GameScoreRecap gameData={this.props.gameData} setScreen={this.props.setScreen} />
       default:
         return (
           <Table className="table-striped">

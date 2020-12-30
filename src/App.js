@@ -86,6 +86,7 @@ export default class App extends Component {
             getGameData={this.getGameData}
             gameData={this.state.game}
             currentUser={this.state.currentUser}
+            setScreen={this.setScreen}
           />
         );
     }

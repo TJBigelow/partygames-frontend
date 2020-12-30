@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 
 export default class GameScoreRecap extends Component {
   renderScores = () => {
@@ -33,6 +33,7 @@ export default class GameScoreRecap extends Component {
           </thead>
           <tbody>{this.renderScores()}</tbody>
         </Table>
+        {this.props.gameData.round === 3 ? <Button onClick={() => {this.props.setScreen({screen: "landing"})}}>Return to Home</Button> : null}
       </div>
     );
   }

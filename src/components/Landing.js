@@ -47,6 +47,11 @@ export default function Landing(props) {
       })
         .then((resp) => resp.json())
         .then((resp) => {
+          console.log(resp)
+          if (resp.errors) {
+            setError(resp.errors);
+            return
+          }
           switch (resp.exception) {
             case "#<NoMethodError: undefined method `started' for nil:NilClass>":
               setError("Game does not exist");

@@ -68,7 +68,7 @@ export default function Landing(props) {
 
   return (
     <div className="container h-100 align-items-center">
-      <Jumbotron><h1>Welcome to Quips against Humanity</h1></Jumbotron>
+      <Jumbotron><h1>Welcome to Quips Against Humanity</h1></Jumbotron>
       <Button onClick={createGame}>
         <h3>Create Game</h3>
       </Button>

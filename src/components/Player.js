@@ -63,7 +63,7 @@ export default class Player extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <h1>{this.props.currentUser.username}</h1>
 
         <div style={{width: '100%'}} className='justify-content-center'>

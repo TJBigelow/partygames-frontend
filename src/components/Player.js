@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PlayerSubmissions from "./PlayerSubmissions";
 import PlayerVoting from "./PlayerVoting";
 import PlayerRecap from "./PlayerRecap";
+import PlayerScoreRecap from "./PlayerScoreRecap";
 
 export default class Player extends Component {
   constructor() {
@@ -53,6 +54,8 @@ export default class Player extends Component {
           )
       case "recap":
         return <PlayerRecap />
+      case "score":
+        return <PlayerScoreRecap setScreen={this.props.setScreen} gameData={this.state} />
       default:
         return this.state.message
     }

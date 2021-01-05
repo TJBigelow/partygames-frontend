@@ -76,6 +76,7 @@ export default class App extends Component {
             getPlayerData={this.getPlayerData}
             gameData={this.state.game}
             currentUser={this.state.currentUser}
+            setScreen={this.setScreen}
           />
         );
       case "watch":

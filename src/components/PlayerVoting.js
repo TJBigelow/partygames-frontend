@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import URL from "../url";
 
 export default class PlayerVoting extends Component {
@@ -33,23 +33,25 @@ export default class PlayerVoting extends Component {
     return (
       <div className="justify-content-center">
         <h3>{this.props.matchup.prompt}</h3>
-        <Row className="justify-content-center">
-          <button
-            data-id={this.props.matchup.player1_id}
-            onClick={this.handleVote}
-            className="btn btn-primary btn-block my-3"
-          >
-            {this.props.matchup.player1_response}
-          </button>
-        </Row>
-        <Row className="justify-content-center">
-          <button
-            data-id={this.props.matchup.player2_id}
-            onClick={this.handleVote}
-            className="btn btn-danger btn-block my-3"
-          >
-            {this.props.matchup.player2_response}
-          </button>
+        <Row className='justify-content-center'>
+          <Col className="col-12 col-md-5">
+            <button
+              data-id={this.props.matchup.player1_id}
+              onClick={this.handleVote}
+              className="btn btn-primary btn-block my-3"
+            >
+              {this.props.matchup.player1_response}
+            </button>
+          </Col>
+          <Col className="col-12 col-md-5">
+            <button
+              data-id={this.props.matchup.player2_id}
+              onClick={this.handleVote}
+              className="btn btn-danger btn-block my-3"
+            >
+              {this.props.matchup.player2_response}
+            </button>
+          </Col>
         </Row>
       </div>
     );

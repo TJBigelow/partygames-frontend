@@ -90,6 +90,8 @@ export default class App extends Component {
             setScreen={this.setScreen}
           />
         );
+      default:
+        return <Landing setScreen={this.setScreen} />;
     }
   };
 

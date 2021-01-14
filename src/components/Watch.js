@@ -4,7 +4,7 @@ import GameRecap from "./GameRecap";
 import GameVoting from "./GameVoting";
 import GameScoreRecap from "./GameScoreRecap";
 import URL from "../url";
-import { Table, Button, Jumbotron } from "react-bootstrap";
+import { Table, Jumbotron } from "react-bootstrap";
 
 export default class Watch extends Component {
   componentDidMount() {
